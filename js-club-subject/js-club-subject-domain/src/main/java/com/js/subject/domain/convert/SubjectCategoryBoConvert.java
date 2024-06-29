@@ -12,8 +12,8 @@ import java.util.List;
  * @date 2024/6/24 18:24
  */
 @Mapper
-public interface SubjectCategoryConvert {
-    SubjectCategoryConvert INSTANCE = Mappers.getMapper(SubjectCategoryConvert.class);
+public interface SubjectCategoryBoConvert {
+    SubjectCategoryBoConvert INSTANCE = Mappers.getMapper(SubjectCategoryBoConvert.class);
 
     SubjectCategory convertToCategory(SubjectCategoryBo subjectCategoryBo);
 
