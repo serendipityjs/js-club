@@ -2,6 +2,8 @@ package com.js.subject.infrastructure.basic.service;
 
 import com.js.subject.infrastructure.basic.entity.SubjectMultiple;
 
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务接口
  *
@@ -42,4 +44,10 @@ public interface SubjectMultipleService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     *
+     * @param subjectMultipleList
+     */
+    void batchInset(List<SubjectMultiple> subjectMultipleList);
 }

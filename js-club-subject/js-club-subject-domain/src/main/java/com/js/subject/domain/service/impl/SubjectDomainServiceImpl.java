@@ -7,11 +7,15 @@ import com.js.subject.domain.handler.subject.SubjectTypeHandler;
 import com.js.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.js.subject.domain.service.SubjectDomainService;
 import com.js.subject.infrastructure.basic.entity.SubjectInfo;
+import com.js.subject.infrastructure.basic.entity.SubjectMapping;
 import com.js.subject.infrastructure.basic.service.SubjectInfoService;
+import com.js.subject.infrastructure.basic.service.SubjectMappingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author jiaoshuai
@@ -28,7 +32,10 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
     @Resource
     private SubjectTypeHandlerFactory subjectTypeHandlerFactory;
 
-    public Boolean add(SubjectInfoBo subjectInfoBo) {
+    @Resource
+    private SubjectMappingService subjectMappingService;
+
+    public void add(SubjectInfoBo subjectInfoBo) {
         if (log.isInfoEnabled()) {
             log.info("SubjectDomainServiceImpl.add.subjectCategoryBo:{}", JSON.toJSONString(subjectInfoBo));
         }
@@ -46,7 +53,18 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
         SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfo.getSubjectType());
         handler.add(subjectInfoBo);
         //映射表信息插入
-
-        return null;
+        List<Integer> categoryIds = subjectInfoBo.getCategoryIds();
+        List<Integer> labelIds = subjectInfoBo.getLabelIds();
+        List<SubjectMapping> subjectMappingList = new LinkedList<>();
+        categoryIds.stream().forEach(categoryId -> {
+            labelIds.forEach(labelId -> {
+                SubjectMapping subjectMapping = new SubjectMapping();
+                subjectMapping.setCategoryId(Long.valueOf(categoryId));
+                subjectMapping.setLabelId(Long.valueOf(labelId));
+                subjectMapping.setSubjectId(subjectInfo.getId());
+                subjectMappingList.add(subjectMapping);
+            });
+        });
+        subjectMappingService.batchInset(subjectMappingList);
     }
 }

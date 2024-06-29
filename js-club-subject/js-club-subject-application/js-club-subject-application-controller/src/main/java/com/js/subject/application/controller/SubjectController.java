@@ -34,7 +34,7 @@ public class SubjectController {
      * 新增题目
      */
     @PostMapping("/add")
-    public Result<Boolean> add(@RequestBody SubjectInfoDto subjectInfoDto) {
+    public Result add(@RequestBody SubjectInfoDto subjectInfoDto) {
         try {
             if (log.isInfoEnabled()) {//这里加这个判断是因为在高并发情况下,如果不加,会导致不管日志打不打印,都会将后面json进行转化,很耗性能
                 log.info("SubjectController.add.dto:{}", JSON.toJSONString(subjectInfoDto));
@@ -51,8 +51,8 @@ public class SubjectController {
             SubjectInfoBo subjectInfoBo = SubjectInfoDtoConverter.INSTANCE.subjectInfoDtoToBo(subjectInfoDto);
             List<SubjectAnswerBo> subjectAnswerBo = SubjectAnswerDtoConverter.INSTANCE.subjectAnswerDtoListToBoList(subjectInfoDto.getOptionList());
             subjectInfoBo.setOptionList(subjectAnswerBo);
-            Boolean result = subjectDomainService.add(subjectInfoBo);
-            return Result.ok(result);
+            subjectDomainService.add(subjectInfoBo);
+            return Result.ok();
         } catch (Exception e) {
             log.error("SubjectController.add.error:{}", e.getMessage(), e);
             return Result.fail("新增题目失败");

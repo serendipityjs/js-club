@@ -6,6 +6,7 @@ import com.js.subject.infrastructure.basic.service.SubjectBriefService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 简答题(SubjectBrief)表服务实现类
@@ -63,5 +64,15 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectBriefDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 批量插入
+     *
+     * @param subjectBriefLinkedList
+     */
+    @Override
+    public void batchInset(List<SubjectBrief> subjectBriefLinkedList) {
+        this.subjectBriefDao.insertBatch(subjectBriefLinkedList);
     }
 }

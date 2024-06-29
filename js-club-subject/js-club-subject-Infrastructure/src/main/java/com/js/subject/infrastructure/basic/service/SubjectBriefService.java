@@ -2,6 +2,8 @@ package com.js.subject.infrastructure.basic.service;
 
 import com.js.subject.infrastructure.basic.entity.SubjectBrief;
 
+import java.util.List;
+
 /**
  * 简答题(SubjectBrief)表服务接口
  *
@@ -43,4 +45,10 @@ public interface SubjectBriefService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     *
+     * @param subjectBriefLinkedList
+     */
+    void batchInset(List<SubjectBrief> subjectBriefLinkedList);
 }
