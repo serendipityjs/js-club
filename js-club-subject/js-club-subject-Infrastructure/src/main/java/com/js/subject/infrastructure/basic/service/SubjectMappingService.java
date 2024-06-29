@@ -49,4 +49,6 @@ public interface SubjectMappingService {
      * 查询分类下标签
      */
     List<SubjectMapping> queryLabelId(SubjectMapping subjectMapping);
+
+    void batchInset(List<SubjectMapping> subjectMappingList);
 }

@@ -1,8 +1,17 @@
 package com.js.subject.domain.handler.subject;
 
 import com.js.subject.comm.enums.SubjectInfoTypeEnum;
+import com.js.subject.domain.convert.MultiSubjectConverter;
+import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.domain.entity.SubjectInfoBo;
+import com.js.subject.infrastructure.basic.entity.SubjectMultiple;
+import com.js.subject.infrastructure.basic.service.SubjectMultipleService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
+import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 多选题目的策略类
@@ -12,6 +21,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MultipleTypeHandler implements SubjectTypeHandler {
+    @Resource
+    private SubjectMultipleService subjectMultipleService;
+
     @Override
     public SubjectInfoTypeEnum getHandlerType() {
         return SubjectInfoTypeEnum.MULTIPLE;
@@ -20,5 +32,20 @@ public class MultipleTypeHandler implements SubjectTypeHandler {
     @Override
     public void add(SubjectInfoBo subjectInfoBo) {
         //多选题目的插入
+        List<SubjectMultiple> subjectMultipleList = new LinkedList<>();
+        List<SubjectAnswerBo> optionList = subjectInfoBo.getOptionList();
+
+        if (CollectionUtils.isEmpty(optionList)) {
+            return;
+        }
+
+        optionList.forEach(option -> {
+            SubjectMultiple subjectMultiple = MultiSubjectConverter.INSTANCE.subjectBoToPo(option);
+            subjectMultiple.setSubjectId(subjectInfoBo.getId());
+            subjectMultipleList.add(subjectMultiple);
+        });
+
+        subjectMultipleService.batchInset(subjectMultipleList);
+
     }
 }

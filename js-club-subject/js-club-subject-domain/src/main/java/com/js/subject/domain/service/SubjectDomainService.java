@@ -1,7 +1,6 @@
 package com.js.subject.domain.service;
 
 import com.js.subject.domain.entity.SubjectInfoBo;
-import com.js.subject.domain.entity.SubjectLabelBo;
 
 /**
  * 题目领域服务
@@ -14,5 +13,5 @@ public interface SubjectDomainService {
     /**
      * 新增标签
      */
-    Boolean add(SubjectInfoBo subjectInfoBo);
+    void add(SubjectInfoBo subjectInfoBo);
 }

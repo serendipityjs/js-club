@@ -2,6 +2,8 @@ package com.js.subject.infrastructure.basic.service;
 
 import com.js.subject.infrastructure.basic.entity.SubjectRadio;
 
+import java.util.List;
+
 /**
  * 单选题信息表(SubjectRadio)表服务接口
  *
@@ -43,4 +45,10 @@ public interface SubjectRadioService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     *
+     * @param subjectRadioList
+     */
+    void batchInsert(List<SubjectRadio> subjectRadioList);
 }

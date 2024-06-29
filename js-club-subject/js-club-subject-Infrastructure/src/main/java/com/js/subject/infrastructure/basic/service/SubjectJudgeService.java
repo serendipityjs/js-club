@@ -2,6 +2,8 @@ package com.js.subject.infrastructure.basic.service;
 
 import com.js.subject.infrastructure.basic.entity.SubjectJudge;
 
+import java.util.List;
+
 /**
  * 判断题(SubjectJudge)表服务接口
  *
@@ -42,4 +44,10 @@ public interface SubjectJudgeService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     *
+     * @param subjectJudgeLinkedList
+     */
+    void batchInset(List<SubjectJudge> subjectJudgeLinkedList);
 }

@@ -2,8 +2,8 @@ package com.js.subject.infrastructure.basic.entity;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 简答题(SubjectBrief)实体类
@@ -23,7 +23,7 @@ public class SubjectBrief implements Serializable {
     /**
      * 题目id
      */
-    private Integer subjectId;
+    private Long subjectId;
 
     /**
      * 题目答案
