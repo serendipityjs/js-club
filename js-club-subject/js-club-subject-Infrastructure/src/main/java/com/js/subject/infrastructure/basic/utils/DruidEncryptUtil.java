@@ -37,7 +37,7 @@ public class DruidEncryptUtil {
      * @return
      */
     public static String encrypt(String plainText) {
-        String encrypt = null;
+        String encrypt;
         try {
             encrypt = ConfigTools.encrypt(privateKey, plainText);
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class DruidEncryptUtil {
      * @return
      */
     public static String decrypt(String encryptText) {
-        String decrypt = null;
+        String decrypt;
         try {
             decrypt = ConfigTools.decrypt(publicKey, encryptText);
         } catch (Exception e) {

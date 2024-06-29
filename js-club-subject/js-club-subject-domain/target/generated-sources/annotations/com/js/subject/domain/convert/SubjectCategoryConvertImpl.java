@@ -11,7 +11,7 @@ import javax.annotation.Generated;
     date = "2024-06-26T11:53:59+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
-public class SubjectCategoryConvertImpl implements SubjectCategoryConvert {
+public class SubjectCategoryConvertImpl implements SubjectCategoryBoConvert {
 
     @Override
     public SubjectCategory convertToCategory(SubjectCategoryBo subjectCategoryBo) {

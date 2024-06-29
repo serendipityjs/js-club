@@ -10,8 +10,10 @@ import lombok.Getter;
  */
 @Getter
 public enum IsDeletedFlagEnum {
-    DELETED(0, "未删除"),
-    UN_DELETED(1, "已删除");
+    UN_DELETED(0, "未删除"),
+
+    DELETED(1, "已删除");
+
 
     private int code;
 
