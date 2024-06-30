@@ -1,6 +1,7 @@
 package com.js.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.js.subject.comm.enums.IsDeletedFlagEnum;
 import com.js.subject.domain.convert.SubjectBoConvert;
 import com.js.subject.domain.entity.SubjectInfoBo;
 import com.js.subject.domain.handler.subject.SubjectTypeHandler;
@@ -47,10 +48,12 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
          * 一个工厂包含四种类型，根据传入的type自动映射选择处理
          * */
         SubjectInfo subjectInfo = SubjectBoConvert.INSTANCE.convertBoToPo(subjectInfoBo);
+        subjectInfo.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         //题目信息表插入
         subjectInfoService.insert(subjectInfo);
         //对应题目表插入
         SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfo.getSubjectType());
+        subjectInfoBo.setId(subjectInfo.getId());
         handler.add(subjectInfoBo);
         //映射表信息插入
         List<Integer> categoryIds = subjectInfoBo.getCategoryIds();

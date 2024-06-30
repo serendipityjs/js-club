@@ -39,6 +39,7 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public int insert(SubjectInfo subjectInfo) {
         return this.subjectInfoDao.insert(subjectInfo);
+
     }
 
     /**

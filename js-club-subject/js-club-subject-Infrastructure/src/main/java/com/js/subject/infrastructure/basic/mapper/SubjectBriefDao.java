@@ -2,7 +2,7 @@ package com.js.subject.infrastructure.basic.mapper;
 
 import com.js.subject.infrastructure.basic.entity.SubjectBrief;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -21,14 +21,6 @@ public interface SubjectBriefDao {
      */
     SubjectBrief queryById(Long id);
 
-    /**
-     * 查询指定行数据
-     *
-     * @param subjectBrief 查询条件
-     * @param pageable         分页对象
-     * @return 对象列表
-     */
-    List<SubjectBrief> queryAllByLimit(SubjectBrief subjectBrief, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数

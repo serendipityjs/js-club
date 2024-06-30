@@ -8,10 +8,10 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-26T11:53:59+0800",
+    date = "2024-06-29T22:16:15+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
-public class SubjectCategoryConvertImpl implements SubjectCategoryBoConvert {
+public class SubjectCategoryBoConvertImpl implements SubjectCategoryBoConvert {
 
     @Override
     public SubjectCategory convertToCategory(SubjectCategoryBo subjectCategoryBo) {
