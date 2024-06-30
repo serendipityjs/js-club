@@ -2,7 +2,7 @@ package com.js.subject.infrastructure.basic.mapper;
 
 import com.js.subject.infrastructure.basic.entity.SubjectRadio;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -20,15 +20,6 @@ public interface SubjectRadioDao {
      * @return 实例对象
      */
     SubjectRadio queryById(Long id);
-
-    /**
-     * 查询指定行数据
-     *
-     * @param subjectRadio 查询条件
-     * @param pageable         分页对象
-     * @return 对象列表
-     */
-    List<SubjectRadio> queryAllByLimit(SubjectRadio subjectRadio, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
