@@ -2,6 +2,7 @@ package com.js.subject.domain.handler.subject;
 
 import com.js.subject.comm.enums.SubjectInfoTypeEnum;
 import com.js.subject.domain.entity.SubjectInfoBo;
+import com.js.subject.domain.entity.SubjectOptionBo;
 
 /**
  * @author jiaoshuai
@@ -18,6 +19,8 @@ public interface SubjectTypeHandler {
      * 实际题目的插入
      */
     void add(SubjectInfoBo subjectInfoBo);
+
+    SubjectOptionBo query(Long subjectId);
 
 
 }

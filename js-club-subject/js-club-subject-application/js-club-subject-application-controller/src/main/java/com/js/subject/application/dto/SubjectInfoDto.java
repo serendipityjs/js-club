@@ -1,5 +1,6 @@
 package com.js.subject.application.dto;
 
+import com.js.subject.comm.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.List;
  * @since 2024-06-28 10:05:29
  */
 @Data
-public class SubjectInfoDto implements Serializable {
+public class SubjectInfoDto extends PageInfo implements Serializable {
     private static final long serialVersionUID = -21142611928142432L;
 
     /**
@@ -61,6 +62,11 @@ public class SubjectInfoDto implements Serializable {
     private List<Integer> categoryIds;
 
     /**
+     * 标签名字列表
+     */
+    List<String> labelName;
+
+    /**
      * 标签id
      */
     private List<Integer> labelIds;
@@ -69,6 +75,16 @@ public class SubjectInfoDto implements Serializable {
      * 答案选项
      */
     private List<SubjectAnswerDto> optionList;
+
+    /**
+     * 分类id
+     */
+    private Long categoryId;
+
+    /**
+     * 标签id
+     */
+    private Long labelId;
 
 
 }

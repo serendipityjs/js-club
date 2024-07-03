@@ -51,4 +51,12 @@ public interface SubjectRadioService {
      * @param subjectRadioList
      */
     void batchInsert(List<SubjectRadio> subjectRadioList);
+
+    /**
+     * 根据条件查询单选题目信息
+     *
+     * @param subjectRadio
+     * @return
+     */
+    List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio);
 }

@@ -64,8 +64,15 @@ public class SubjectLabelServiceImpl implements SubjectLabelService {
         return this.subjectLabelDao.deleteById(id) > 0;
     }
 
+    /**
+     * 根据标签id列表查询标签信息
+     *
+     * @param labelIds
+     * @return
+     */
     @Override
     public List<SubjectLabel> batchQueryByLabelIdList(List<Long> labelIds) {
         return this.subjectLabelDao.batchQueryByLabelIdList(labelIds);
     }
+
 }

@@ -71,5 +71,12 @@ public interface SubjectMultipleDao {
      */
     int deleteById(Long id);
 
+    /**
+     * 查询多选题目信息
+     *
+     * @param subjectMultiple
+     * @return
+     */
+    List<SubjectMultiple> queryAllByLimit(SubjectMultiple subjectMultiple);
 }
 

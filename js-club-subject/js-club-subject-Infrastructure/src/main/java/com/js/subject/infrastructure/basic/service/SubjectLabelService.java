@@ -45,5 +45,12 @@ public interface SubjectLabelService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 根据标签id列表查询标签信息
+     *
+     * @param labelIds
+     * @return
+     */
     List<SubjectLabel> batchQueryByLabelIdList(List<Long> labelIds);
+
 }

@@ -6,6 +6,7 @@ import com.js.subject.infrastructure.basic.service.SubjectInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 题目信息表(SubjectInfo)表服务实现类
@@ -63,5 +64,34 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectInfoDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 获取分类下对应标签下的所有题目数量
+     *
+     * @param subjectInfo
+     * @param categoryId
+     * @param labelId
+     * @return
+     */
+    @Override
+    public int getCount(SubjectInfo subjectInfo, Long categoryId, Long labelId) {
+        return this.subjectInfoDao.getCount(subjectInfo, categoryId, labelId);
+    }
+
+    /**
+     * 分页查询题目列表
+     *
+     * @param subjectInfo
+     * @param categoryId
+     * @param labelId
+     * @param start
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long categoryId, Long labelId, int start, Integer pageSize) {
+        return this.subjectInfoDao.queryPage(subjectInfo, categoryId, labelId, start, pageSize);
+
     }
 }
