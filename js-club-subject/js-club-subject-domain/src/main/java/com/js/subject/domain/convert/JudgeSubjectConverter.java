@@ -5,6 +5,8 @@ import com.js.subject.infrastructure.basic.entity.SubjectJudge;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * @author jiaoshuai
  * @date 2024/6/27 10:39
@@ -15,5 +17,7 @@ public interface JudgeSubjectConverter {
 
 
     SubjectJudge subjectBoToPo(SubjectAnswerBo subjectAnswerBo);
+
+    List<SubjectAnswerBo> subjectJudgeListTOAnswerBo(List<SubjectJudge> subjectJudgeList);
 
 }

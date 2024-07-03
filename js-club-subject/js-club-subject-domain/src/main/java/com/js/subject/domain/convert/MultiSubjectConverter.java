@@ -2,9 +2,10 @@ package com.js.subject.domain.convert;
 
 import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.infrastructure.basic.entity.SubjectMultiple;
-import com.js.subject.infrastructure.basic.entity.SubjectRadio;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 /**
  * @author jiaoshuai
@@ -16,5 +17,7 @@ public interface MultiSubjectConverter {
 
 
     SubjectMultiple subjectBoToPo(SubjectAnswerBo subjectAnswerBo);
+
+    List<SubjectAnswerBo> subjectMultipleListToAnswerBO(List<SubjectMultiple> subjectMultipleList);
 
 }

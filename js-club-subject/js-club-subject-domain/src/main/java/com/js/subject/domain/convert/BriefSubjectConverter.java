@@ -1,6 +1,7 @@
 package com.js.subject.domain.convert;
 
 import com.js.subject.domain.entity.SubjectAnswerBo;
+import com.js.subject.domain.entity.SubjectInfoBo;
 import com.js.subject.infrastructure.basic.entity.SubjectBrief;
 import com.js.subject.infrastructure.basic.entity.SubjectJudge;
 import org.mapstruct.Mapper;
@@ -16,5 +17,6 @@ public interface BriefSubjectConverter {
 
 
     SubjectBrief subjectBoToPo(SubjectAnswerBo subjectAnswerBo);
+    SubjectBrief subjectInfoBoToBrief(SubjectInfoBo subjectInfoBo);
 
 }

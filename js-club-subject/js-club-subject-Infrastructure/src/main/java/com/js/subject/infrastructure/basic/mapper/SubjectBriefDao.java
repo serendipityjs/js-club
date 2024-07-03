@@ -71,5 +71,12 @@ public interface SubjectBriefDao {
      */
     int deleteById(Long id);
 
+    /**
+     * 查询简答题目信息
+     *
+     * @param subjectBrief
+     * @return
+     */
+    SubjectBrief queryAllByLimit(SubjectBrief subjectBrief);
 }
 

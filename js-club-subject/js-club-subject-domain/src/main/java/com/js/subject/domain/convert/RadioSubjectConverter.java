@@ -1,12 +1,11 @@
 package com.js.subject.domain.convert;
 
 import com.js.subject.domain.entity.SubjectAnswerBo;
-import com.js.subject.domain.entity.SubjectInfoBo;
-import com.js.subject.domain.entity.SubjectRadioBo;
-import com.js.subject.infrastructure.basic.entity.SubjectInfo;
 import com.js.subject.infrastructure.basic.entity.SubjectRadio;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 /**
  * @author jiaoshuai
@@ -18,5 +17,7 @@ public interface RadioSubjectConverter {
 
 
     SubjectRadio subjectBoToPo(SubjectAnswerBo subjectAnswerBo);
+
+    List<SubjectAnswerBo> subjectRadioListToAnswer(List<SubjectRadio> subjectRadioList);
 
 }

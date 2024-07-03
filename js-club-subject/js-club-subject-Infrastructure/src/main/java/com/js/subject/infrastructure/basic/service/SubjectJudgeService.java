@@ -50,4 +50,12 @@ public interface SubjectJudgeService {
      * @param subjectJudgeLinkedList
      */
     void batchInset(List<SubjectJudge> subjectJudgeLinkedList);
+
+    /**
+     * 查询判断题目信息
+     *
+     * @param subjectJudge
+     * @return
+     */
+    List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge);
 }

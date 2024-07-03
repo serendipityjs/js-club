@@ -65,8 +65,31 @@ public class SubjectRadioServiceImpl implements SubjectRadioService {
         return this.subjectRadioDao.deleteById(id) > 0;
     }
 
+    /**
+     * 批量插入
+     *
+     * @param subjectRadioList
+     */
     @Override
     public void batchInsert(List<SubjectRadio> subjectRadioList) {
         this.subjectRadioDao.insertBatch(subjectRadioList);
+    }
+
+    /**
+     * 根据题目id查询单选题目信息
+     *
+     * @param subjectRadio
+     * @return
+     */
+
+    /**
+     * 根据条件查询题目信息
+     *
+     * @param subjectRadio
+     * @return
+     */
+    @Override
+    public List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio) {
+        return this.subjectRadioDao.queryAllByLimit(subjectRadio);
     }
 }

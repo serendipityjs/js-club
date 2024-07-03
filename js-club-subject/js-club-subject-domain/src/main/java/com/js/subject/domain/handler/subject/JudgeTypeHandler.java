@@ -1,9 +1,11 @@
 package com.js.subject.domain.handler.subject;
 
+import com.js.subject.comm.enums.IsDeletedFlagEnum;
 import com.js.subject.comm.enums.SubjectInfoTypeEnum;
 import com.js.subject.domain.convert.JudgeSubjectConverter;
 import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.domain.entity.SubjectInfoBo;
+import com.js.subject.domain.entity.SubjectOptionBo;
 import com.js.subject.infrastructure.basic.entity.SubjectJudge;
 import com.js.subject.infrastructure.basic.service.SubjectJudgeService;
 import org.springframework.stereotype.Component;
@@ -42,10 +44,22 @@ public class JudgeTypeHandler implements SubjectTypeHandler {
         optionList.forEach(option -> {
             SubjectJudge subjectJudge = JudgeSubjectConverter.INSTANCE.subjectBoToPo(option);
             subjectJudge.setSubjectId(subjectInfoBo.getId());
+            subjectJudge.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
             subjectJudgeLinkedList.add(subjectJudge);
         });
 
         subjectJudgeService.batchInset(subjectJudgeLinkedList);
 
+    }
+
+    @Override
+    public SubjectOptionBo query(Long subjectId) {
+        SubjectJudge subjectJudge = new SubjectJudge();
+        subjectJudge.setSubjectId(Long.valueOf(subjectId));
+        List<SubjectJudge> result = subjectJudgeService.queryByCondition(subjectJudge);
+        List<SubjectAnswerBo> subjectAnswerBOList = JudgeSubjectConverter.INSTANCE.subjectJudgeListTOAnswerBo(result);
+        SubjectOptionBo subjectOptionBO = new SubjectOptionBo();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

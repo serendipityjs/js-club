@@ -1,5 +1,6 @@
 package com.js.subject.domain.entity;
 
+import com.js.subject.comm.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.List;
  * @since 2024-06-28 10:05:29
  */
 @Data
-public class SubjectInfoBo implements Serializable {
+public class SubjectInfoBo extends PageInfo implements Serializable {
     private static final long serialVersionUID = -21142611928142432L;
 
     /**
@@ -66,9 +67,24 @@ public class SubjectInfoBo implements Serializable {
     private List<Integer> labelIds;
 
     /**
+     * 标签名字列表
+     */
+    List<String> labelName;
+
+    /**
      * 答案选项
      */
     private List<SubjectAnswerBo> optionList;
+
+    /**
+     * 分类id
+     */
+    private Long categoryId;
+
+    /**
+     * 标签id
+     */
+    private Long labelId;
 
 
 }

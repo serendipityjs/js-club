@@ -51,4 +51,12 @@ public interface SubjectBriefService {
      * @param subjectBriefLinkedList
      */
     void batchInset(List<SubjectBrief> subjectBriefLinkedList);
+
+    /**
+     * 查询简答题目信息
+     *
+     * @param subjectBrief
+     * @return
+     */
+    SubjectBrief queryByCondition(SubjectBrief subjectBrief);
 }

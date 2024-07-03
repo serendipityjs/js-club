@@ -50,4 +50,12 @@ public interface SubjectMultipleService {
      * @param subjectMultipleList
      */
     void batchInset(List<SubjectMultiple> subjectMultipleList);
+
+    /**
+     * 查询多选题目信息
+     *
+     * @param subjectMultiple
+     * @return
+     */
+    List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple);
 }

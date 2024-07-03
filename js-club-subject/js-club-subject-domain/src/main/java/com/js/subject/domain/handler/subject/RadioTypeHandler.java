@@ -1,9 +1,11 @@
 package com.js.subject.domain.handler.subject;
 
+import com.js.subject.comm.enums.IsDeletedFlagEnum;
 import com.js.subject.comm.enums.SubjectInfoTypeEnum;
 import com.js.subject.domain.convert.RadioSubjectConverter;
 import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.domain.entity.SubjectInfoBo;
+import com.js.subject.domain.entity.SubjectOptionBo;
 import com.js.subject.infrastructure.basic.entity.SubjectRadio;
 import com.js.subject.infrastructure.basic.service.SubjectRadioService;
 import org.springframework.stereotype.Component;
@@ -42,8 +44,20 @@ public class RadioTypeHandler implements SubjectTypeHandler {
         optionList.forEach(option -> {
             SubjectRadio subjectRadio = RadioSubjectConverter.INSTANCE.subjectBoToPo(option);
             subjectRadio.setSubjectId(subjectInfoBo.getId());
+            subjectRadio.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
             subjectRadioList.add(subjectRadio);
         });
         subjectRadioService.batchInsert(subjectRadioList);
+    }
+
+    @Override
+    public SubjectOptionBo query(Long subjectId) {
+        SubjectRadio subjectRadio = new SubjectRadio();
+        subjectRadio.setSubjectId(subjectId);
+        List<SubjectRadio> result = subjectRadioService.queryByCondition(subjectRadio);
+        List<SubjectAnswerBo> subjectAnswerBOList = RadioSubjectConverter.INSTANCE.subjectRadioListToAnswer(result);
+        SubjectOptionBo subjectOptionBO = new SubjectOptionBo();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

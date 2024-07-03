@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.js.subject.application.convert.SubjectAnswerDtoConverter;
 import com.js.subject.application.convert.SubjectInfoDtoConverter;
 import com.js.subject.application.dto.SubjectInfoDto;
+import com.js.subject.comm.entity.PageResult;
 import com.js.subject.comm.entity.Result;
 import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.domain.entity.SubjectInfoBo;
@@ -58,6 +59,59 @@ public class SubjectController {
         } catch (Exception e) {
             log.error("SubjectController.add.error:{}", e.getMessage(), e);
             return Result.fail("新增题目失败");
+        }
+    }
+
+
+    /**
+     * 查询题目列表
+     */
+    @PostMapping("/queryPage")
+    public Result<PageResult<SubjectInfoDto>> queryPage(@RequestBody SubjectInfoDto subjectInfoDto) {
+        try {
+            if (log.isInfoEnabled()) {//这里加这个判断是因为在高并发情况下,如果不加,会导致不管日志打不打印,都会将后面json进行转化,很耗性能
+                log.info("SubjectController.queryPage.dto:{}", JSON.toJSONString(subjectInfoDto));
+            }
+
+            //入参必传校验
+            Preconditions.checkNotNull(subjectInfoDto.getCategoryId(), "分类id不能为空");
+            Preconditions.checkNotNull(subjectInfoDto.getLabelId(), "标签id不能为空");
+
+            SubjectInfoBo subjectInfoBo = SubjectInfoDtoConverter.INSTANCE.subjectInfoDtoToBo(subjectInfoDto);
+            subjectInfoBo.setPageNo(subjectInfoDto.getPageNo());
+            subjectInfoBo.setPageSize(subjectInfoDto.getPageSize());
+
+            PageResult<SubjectInfoBo> boPageResult = subjectDomainService.queryPage(subjectInfoBo);
+            return Result.ok(boPageResult);
+        } catch (Exception e) {
+            log.error("SubjectController.queryPage.error:{}", e.getMessage(), e);
+            return Result.fail("查询题目失败");
+        }
+    }
+
+
+    /**
+     * 查询题目详情
+     */
+    @PostMapping("/getSubjectInfo")
+    public Result<SubjectInfoDto> getSubjectInfo(@RequestBody SubjectInfoDto subjectInfoDto) {
+        try {
+            if (log.isInfoEnabled()) {//这里加这个判断是因为在高并发情况下,如果不加,会导致不管日志打不打印,都会将后面json进行转化,很耗性能
+                log.info("SubjectController.getSubjectInfo.dto:{}", JSON.toJSONString(subjectInfoDto));
+            }
+
+            //入参必传校验
+            Preconditions.checkNotNull(subjectInfoDto.getCategoryId(), "分类id不能为空");
+            Preconditions.checkNotNull(subjectInfoDto.getLabelId(), "标签id不能为空");
+            Preconditions.checkNotNull(subjectInfoDto.getId(), "题目id不能为空");
+
+            SubjectInfoBo subjectInfoBo = SubjectInfoDtoConverter.INSTANCE.subjectInfoDtoToBo(subjectInfoDto);
+            SubjectInfoBo boResult = subjectDomainService.getSubjectInfo(subjectInfoBo);
+            SubjectInfoDto dtoResult = SubjectInfoDtoConverter.INSTANCE.subjectInfoBotoDto(boResult);
+            return Result.ok(dtoResult);
+        } catch (Exception e) {
+            log.error("SubjectController.getSubjectInfo.error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
         }
     }
 

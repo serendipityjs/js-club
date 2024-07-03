@@ -67,6 +67,17 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     }
 
     /**
+     * 查询简答题目信息
+     *
+     * @param subjectBrief
+     * @return
+     */
+    @Override
+    public SubjectBrief queryByCondition(SubjectBrief subjectBrief) {
+        return this.subjectBriefDao.queryAllByLimit(subjectBrief);
+    }
+
+    /**
      * 批量插入
      *
      * @param subjectBriefLinkedList
