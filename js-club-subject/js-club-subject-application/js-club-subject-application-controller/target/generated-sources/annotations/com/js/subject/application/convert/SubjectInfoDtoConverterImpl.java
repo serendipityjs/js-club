@@ -10,8 +10,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-02T11:21:54+0800",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
+    date = "2024-07-03T12:12:37+0800",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_332 (Amazon.com Inc.)"
 )
 public class SubjectInfoDtoConverterImpl implements SubjectInfoDtoConverter {
 
@@ -23,6 +23,8 @@ public class SubjectInfoDtoConverterImpl implements SubjectInfoDtoConverter {
 
         SubjectInfoBo subjectInfoBo = new SubjectInfoBo();
 
+        subjectInfoBo.setPageNo( subjectInfoDto.getPageNo() );
+        subjectInfoBo.setPageSize( subjectInfoDto.getPageSize() );
         subjectInfoBo.setId( subjectInfoDto.getId() );
         subjectInfoBo.setSubjectName( subjectInfoDto.getSubjectName() );
         subjectInfoBo.setSubjectDifficult( subjectInfoDto.getSubjectDifficult() );
@@ -58,6 +60,8 @@ public class SubjectInfoDtoConverterImpl implements SubjectInfoDtoConverter {
 
         SubjectInfoDto subjectInfoDto = new SubjectInfoDto();
 
+        subjectInfoDto.setPageNo( subjectInfoBo.getPageNo() );
+        subjectInfoDto.setPageSize( subjectInfoBo.getPageSize() );
         subjectInfoDto.setId( subjectInfoBo.getId() );
         subjectInfoDto.setSubjectName( subjectInfoBo.getSubjectName() );
         subjectInfoDto.setSubjectDifficult( subjectInfoBo.getSubjectDifficult() );
