@@ -2,8 +2,8 @@ package com.js.subject.infrastructure.basic.entity;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 单选题信息表(SubjectRadio)实体类
