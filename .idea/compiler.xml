@@ -10,6 +10,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="js-club-subject-application-job" />
         <module name="js-club-subject-api" />
+        <module name="js-club-oss" />
         <module name="js-club-subject-comm" />
         <module name="js-club-subject-domain" />
         <module name="js-club-subject-application-controller" />
