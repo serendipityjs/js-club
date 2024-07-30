@@ -7,6 +7,8 @@
         <option value="$PROJECT_DIR$/js-club-subject/pom.xml" />
         <option value="$PROJECT_DIR$/js-club-subject/js-club-subject-application/js-club-subject-application-mq/pom.xml" />
         <option value="$PROJECT_DIR$/js-club-oss/pom.xml" />
+        <option value="$PROJECT_DIR$/js-club-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/js-club-gateway/pom.xml" />
       </list>
     </option>
   </component>

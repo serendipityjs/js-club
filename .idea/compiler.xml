@@ -9,13 +9,22 @@
         <outputRelativeToContentRoot value="true" />
         <module name="js-club-subject-application-job" />
         <module name="js-club-subject-api" />
-        <module name="js-club-oss" />
         <module name="js-club-subject-comm" />
         <module name="js-club-subject-domain" />
-        <module name="js-club-subject-application-controller" />
-        <module name="js-club-subject-Infrastructure" />
+        <module name="js-club-auth-application-job" />
+        <module name="js-club-auth-common" />
         <module name="js-club-subject-application-mq" />
         <module name="js-club-subject-starter" />
+        <module name="js-club-auth-api" />
+        <module name="js-club-auth-application-mq" />
+        <module name="js-club-auth-starter" />
+        <module name="js-club-oss" />
+        <module name="js-club-auth-infra" />
+        <module name="js-club-auth-application-controller" />
+        <module name="js-club-gateway" />
+        <module name="js-club-subject-application-controller" />
+        <module name="js-club-subject-Infrastructure" />
+        <module name="js-club-auth-domain" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
