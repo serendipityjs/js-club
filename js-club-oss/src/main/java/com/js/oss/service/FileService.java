@@ -1,6 +1,6 @@
 package com.js.oss.service;
 
-import com.js.oss.config.StorageAdapter;
+import com.js.oss.adpter.StorageAdapter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

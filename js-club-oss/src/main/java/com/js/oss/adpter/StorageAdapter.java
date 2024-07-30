@@ -1,4 +1,4 @@
-package com.js.oss.config;
+package com.js.oss.adpter;
 
 import com.js.oss.entity.FileInfo;
 
