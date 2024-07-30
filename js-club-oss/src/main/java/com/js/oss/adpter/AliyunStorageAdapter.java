@@ -1,7 +1,6 @@
 package com.js.oss.adpter;
 
 import com.js.oss.entity.FileInfo;
-import com.js.oss.config.StorageAdapter;
 
 import java.io.InputStream;
 import java.util.LinkedList;
