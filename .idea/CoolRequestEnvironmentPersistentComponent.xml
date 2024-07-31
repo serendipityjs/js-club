@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CoolRequestEnvironmentPersistentComponent">
+    <option name="environments" value="[{&quot;environmentName&quot;:&quot;oss&quot;,&quot;hostAddress&quot;:&quot;http://localhost:5000/oss/**&quot;,&quot;id&quot;:&quot;3696441120a402f793a704766540e69e&quot;,&quot;header&quot;:[],&quot;urlParam&quot;:[],&quot;formData&quot;:[],&quot;formUrlencoded&quot;:[]}]" />
+  </component>
+</project>
