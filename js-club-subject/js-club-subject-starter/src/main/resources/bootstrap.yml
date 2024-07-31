@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: js-club-subject-dev
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 121.199.72.185:8848
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+        namespace:
+        file-extension: yaml
+      discovery:
+        enabled: true
+        server-addr: 121.199.72.185:8848
