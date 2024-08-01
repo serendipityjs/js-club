@@ -66,7 +66,7 @@ public class DruidEncryptUtil {
 
 
     public static void main(String[] args) {
-        String password = encrypt("123456");
+        String password = encrypt("jsyx1314520");
         System.out.println("password = " + password);
     }
 
