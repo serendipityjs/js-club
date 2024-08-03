@@ -10,3 +10,9 @@ spring:
             - Path=/oss/**
           filters:
             - StripPrefix=1
+        - id: subject
+          uri: lb://js-club-subject-dev
+          predicates:
+            - Path=/subject/**
+          filters:
+            - StripPrefix=1
