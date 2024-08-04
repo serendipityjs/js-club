@@ -1,18 +1,18 @@
-package com.js.auth.infra.basic.entity;
+package com.js.auth.application.dto;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * 用户信息表(AuthUser)实体类
+ * 用户信息dto
  *
  * @author makejava
  * @since 2024-08-03 19:50:03
  */
 @Data
-public class AuthUser implements Serializable {
+public class AuthUserDto implements Serializable {
     private static final long serialVersionUID = -41211217537463918L;
     /**
      * 主键
@@ -78,6 +78,5 @@ public class AuthUser implements Serializable {
      * 是否被删除 0未删除 1已删除
      */
     private Integer isDeleted;
-
 }
 

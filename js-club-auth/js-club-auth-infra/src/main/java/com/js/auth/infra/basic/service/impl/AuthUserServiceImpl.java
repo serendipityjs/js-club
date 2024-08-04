@@ -52,9 +52,9 @@ public class AuthUserServiceImpl implements AuthUserService {
      * @return 实例对象
      */
     @Override
-    public AuthUser insert(AuthUser authUser) {
-        this.authUserDao.insert(authUser);
-        return authUser;
+    public Integer insert(AuthUser authUser) {
+        int insert = this.authUserDao.insert(authUser);
+        return insert;
     }
 
     /**
