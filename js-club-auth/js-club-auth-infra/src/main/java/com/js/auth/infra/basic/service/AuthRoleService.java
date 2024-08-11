@@ -21,21 +21,12 @@ public interface AuthRoleService {
     AuthRole queryById(Long id);
 
     /**
-     * 分页查询
-     *
-     * @param authRole 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    Page<AuthRole> queryByPage(AuthRole authRole, PageRequest pageRequest);
-
-    /**
      * 新增数据
      *
      * @param authRole 实例对象
      * @return 实例对象
      */
-    AuthRole insert(AuthRole authRole);
+    Integer insert(AuthRole authRole);
 
     /**
      * 修改数据
@@ -43,7 +34,7 @@ public interface AuthRoleService {
      * @param authRole 实例对象
      * @return 实例对象
      */
-    AuthRole update(AuthRole authRole);
+    Integer update(AuthRole authRole);
 
     /**
      * 通过主键删除数据
@@ -53,4 +44,11 @@ public interface AuthRoleService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 根据条件查询角色信息
+     *
+     * @param authRole
+     * @return
+     */
+    AuthRole queryByCondition(AuthRole authRole);
 }

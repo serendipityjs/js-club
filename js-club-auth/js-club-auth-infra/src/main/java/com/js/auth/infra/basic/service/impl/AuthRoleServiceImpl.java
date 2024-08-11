@@ -32,18 +32,6 @@ public class AuthRoleServiceImpl implements AuthRoleService {
         return this.authRoleDao.queryById(id);
     }
 
-    /**
-     * 分页查询
-     *
-     * @param authRole 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AuthRole> queryByPage(AuthRole authRole, PageRequest pageRequest) {
-        long total = this.authRoleDao.count(authRole);
-        return new PageImpl<>(this.authRoleDao.queryAllByLimit(authRole, pageRequest), pageRequest, total);
-    }
 
     /**
      * 新增数据
@@ -52,9 +40,8 @@ public class AuthRoleServiceImpl implements AuthRoleService {
      * @return 实例对象
      */
     @Override
-    public AuthRole insert(AuthRole authRole) {
-        this.authRoleDao.insert(authRole);
-        return authRole;
+    public Integer insert(AuthRole authRole) {
+        return this.authRoleDao.insert(authRole);
     }
 
     /**
@@ -64,9 +51,8 @@ public class AuthRoleServiceImpl implements AuthRoleService {
      * @return 实例对象
      */
     @Override
-    public AuthRole update(AuthRole authRole) {
-        this.authRoleDao.update(authRole);
-        return this.queryById(authRole.getId());
+    public Integer update(AuthRole authRole) {
+        return this.authRoleDao.update(authRole);
     }
 
     /**
@@ -78,5 +64,16 @@ public class AuthRoleServiceImpl implements AuthRoleService {
     @Override
     public boolean deleteById(Long id) {
         return this.authRoleDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 根据条件获取角色信息
+     *
+     * @param authRole
+     * @return
+     */
+    @Override
+    public AuthRole queryByCondition(AuthRole authRole) {
+        return this.authRoleDao.queryAllByLimit(authRole);
     }
 }

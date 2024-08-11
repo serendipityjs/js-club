@@ -36,7 +36,7 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * 分页查询
      *
      * @param authPermission 筛选条件
-     * @param pageRequest      分页对象
+     * @param pageRequest    分页对象
      * @return 查询结果
      */
     @Override
@@ -52,9 +52,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission insert(AuthPermission authPermission) {
-        this.authPermissionDao.insert(authPermission);
-        return authPermission;
+    public Integer insert(AuthPermission authPermission) {
+        return this.authPermissionDao.insert(authPermission);
     }
 
     /**
@@ -64,9 +63,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission update(AuthPermission authPermission) {
-        this.authPermissionDao.update(authPermission);
-        return this.queryById(authPermission.getId());
+    public Integer update(AuthPermission authPermission) {
+        return this.authPermissionDao.update(authPermission);
     }
 
     /**

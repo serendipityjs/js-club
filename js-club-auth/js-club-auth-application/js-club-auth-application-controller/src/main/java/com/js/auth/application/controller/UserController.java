@@ -36,19 +36,37 @@ public class UserController {
             return Result.ok(authUserDomainService.register(authUserBO));
         } catch (Exception e) {
             log.error("UserController.register.error:{}", e.getMessage(), e);
-            return Result.fail("注册用户失败:"+e.getMessage());
+            return Result.fail("注册用户失败:" + e.getMessage());
+        }
+    }
+
+
+    /**
+     * 修改用户信息
+     */
+    @RequestMapping("update")
+    public Result<Boolean> update(@RequestBody AuthUserDto authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.update.dto:{}", JSON.toJSONString(authUserDTO));
+            }
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDTOToBO(authUserDTO);
+            return Result.ok(authUserDomainService.update(authUserBO));
+        } catch (Exception e) {
+            log.error("UserController.update.error:{}", e.getMessage(), e);
+            return Result.fail("更新用户信息失败:" + e.getMessage());
         }
     }
 
     /**
      * 用户注册信息校验
-     *
+                *
      * @param authUserDTO
-     */
-    private void checkUserInfo(AuthUserDto authUserDTO) {
-        Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getUserName()),"用户名不能为空");
-        Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getPassword()),"邮箱地址不能为空");
-        Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getEmail()),"密码不能为空");
+                */
+        private void checkUserInfo(AuthUserDto authUserDTO) {
+            Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getUserName()), "用户名不能为空");
+            Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getPassword()), "密码不能为空");
+            Preconditions.checkArgument(StringUtils.isNotBlank(authUserDTO.getEmail()), "邮箱地址不能为空");
     }
 
 }

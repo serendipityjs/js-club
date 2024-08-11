@@ -1,9 +1,9 @@
-package com.js.auth.infra.basic.entity;
+package com.js.auth.application.dto;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (AuthPermission)实体类
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 2024-08-03 19:51:29
  */
 @Data
-public class AuthPermission implements Serializable {
+public class AuthPermissionDto implements Serializable {
     private static final long serialVersionUID = -58669294418617796L;
 
     private Long id;

@@ -25,10 +25,8 @@ public interface AuthRoleDao {
      * 查询指定行数据
      *
      * @param authRole 查询条件
-     * @param pageable         分页对象
-     * @return 对象列表
      */
-    List<AuthRole> queryAllByLimit(AuthRole authRole, @Param("pageable") Pageable pageable);
+    AuthRole queryAllByLimit(AuthRole authRole);
 
     /**
      * 统计总行数

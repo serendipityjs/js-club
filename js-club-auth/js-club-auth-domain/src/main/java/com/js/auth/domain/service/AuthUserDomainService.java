@@ -17,4 +17,6 @@ public interface AuthUserDomainService {
      * @return
      */
     Boolean register(AuthUserBO authUserBO);
+
+    Boolean update(AuthUserBO authUserBO);
 }

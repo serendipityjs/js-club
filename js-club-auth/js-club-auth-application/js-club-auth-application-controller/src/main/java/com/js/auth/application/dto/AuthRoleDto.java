@@ -1,9 +1,9 @@
-package com.js.auth.infra.basic.entity;
+package com.js.auth.application.dto;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (AuthRole)实体类
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 2024-08-03 19:51:32
  */
 @Data
-public class AuthRole implements Serializable {
+public class AuthRoleDto implements Serializable {
     private static final long serialVersionUID = 168149277778110789L;
 
     private Long id;

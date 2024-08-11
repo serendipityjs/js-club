@@ -35,8 +35,8 @@ public class AuthUserServiceImpl implements AuthUserService {
     /**
      * 分页查询
      *
-     * @param authUser 筛选条件
-     * @param pageRequest      分页对象
+     * @param authUser    筛选条件
+     * @param pageRequest 分页对象
      * @return 查询结果
      */
     @Override
@@ -64,9 +64,8 @@ public class AuthUserServiceImpl implements AuthUserService {
      * @return 实例对象
      */
     @Override
-    public AuthUser update(AuthUser authUser) {
-        this.authUserDao.update(authUser);
-        return this.queryById(authUser.getId());
+    public Integer update(AuthUser authUser) {
+        return this.authUserDao.update(authUser);
     }
 
     /**
