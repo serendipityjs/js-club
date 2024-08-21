@@ -41,7 +41,7 @@ public class StpInterfaceImpl implements StpInterface {
     }
 
     private List<String> getAuth(String loginId, String prefix) {
-        String authKey = redisUtil.buildKey(prefix, loginId.toString());
+        String authKey = redisUtil.buildKey(prefix, loginId);
         String authValue = redisUtil.get(authKey);
         if (StringUtils.isBlank(authValue)) {
             return Collections.emptyList();

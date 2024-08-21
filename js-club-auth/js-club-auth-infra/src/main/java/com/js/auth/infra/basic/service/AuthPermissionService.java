@@ -4,6 +4,8 @@ import com.js.auth.infra.basic.entity.AuthPermission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * (AuthPermission)表服务接口
  *
@@ -53,4 +55,12 @@ public interface AuthPermissionService {
      */
     boolean deleteById(Long id);
 
+
+    /**
+     * 根据权限id列表查询权限信息
+     *
+     * @param permissionIdList
+     * @return
+     */
+    List<AuthPermission> queryByRoleList(List<Long> permissionIdList);
 }

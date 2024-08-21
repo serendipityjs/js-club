@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,18 +34,6 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
         return this.authRolePermissionDao.queryById(id);
     }
 
-    /**
-     * 分页查询
-     *
-     * @param authRolePermission 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AuthRolePermission> queryByPage(AuthRolePermission authRolePermission, PageRequest pageRequest) {
-        long total = this.authRolePermissionDao.count(authRolePermission);
-        return new PageImpl<>(this.authRolePermissionDao.queryAllByLimit(authRolePermission, pageRequest), pageRequest, total);
-    }
 
     /**
      * 新增数据
@@ -79,6 +68,17 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
     @Override
     public int batchInsert(List<AuthRolePermission> rolePermissionList) {
         return  this.authRolePermissionDao.insertBatch(rolePermissionList);
+    }
+
+    /**
+     * 根据roleId查询权限
+     *
+     * @param authRolePermission
+     * @return
+     */
+    @Override
+    public List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission) {
+        return this.authRolePermissionDao.queryAllByLimit(authRolePermission);
     }
 
     /**

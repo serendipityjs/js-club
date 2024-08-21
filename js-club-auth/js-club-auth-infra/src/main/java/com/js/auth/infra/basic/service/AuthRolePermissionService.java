@@ -22,14 +22,6 @@ public interface AuthRolePermissionService {
      */
     AuthRolePermission queryById(Long id);
 
-    /**
-     * 分页查询
-     *
-     * @param authRolePermission 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    Page<AuthRolePermission> queryByPage(AuthRolePermission authRolePermission, PageRequest pageRequest);
 
     /**
      * 新增数据
@@ -62,4 +54,12 @@ public interface AuthRolePermissionService {
      * @return
      */
     int batchInsert(List<AuthRolePermission> rolePermissionList);
+
+    /**
+     * 根据roleId查询权限
+     *
+     * @param authRolePermission
+     * @return
+     */
+    List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission);
 }
