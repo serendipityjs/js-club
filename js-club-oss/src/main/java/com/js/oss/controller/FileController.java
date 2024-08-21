@@ -1,10 +1,8 @@
 package com.js.oss.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.js.oss.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

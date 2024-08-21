@@ -79,5 +79,12 @@ public interface AuthPermissionDao {
      */
     int deleteById(Long id);
 
+    /**
+     * 根据权限id列表查询权限信息
+     *
+     * @param permissionIdList
+     * @return
+     */
+    List<AuthPermission> queryByIdList(List<Long> permissionIdList);
 }
 

@@ -24,6 +24,7 @@
         <module name="js-club-gateway" />
         <module name="js-club-subject-application-controller" />
         <module name="js-club-subject-Infrastructure" />
+        <module name="js-club-wx" />
         <module name="js-club-auth-domain" />
       </profile>
     </annotationProcessing>

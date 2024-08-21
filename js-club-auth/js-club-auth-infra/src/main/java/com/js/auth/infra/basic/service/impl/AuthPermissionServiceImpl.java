@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * (AuthPermission)表服务实现类
@@ -65,6 +67,17 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
     @Override
     public Integer update(AuthPermission authPermission) {
         return this.authPermissionDao.update(authPermission);
+    }
+
+    /**
+     * 根据权限id列表查询权限信息
+     *
+     * @param permissionIdList
+     * @return
+     */
+    @Override
+    public List<AuthPermission> queryByRoleList(List<Long> permissionIdList) {
+        return this.authPermissionDao.queryByIdList(permissionIdList);
     }
 
     /**
