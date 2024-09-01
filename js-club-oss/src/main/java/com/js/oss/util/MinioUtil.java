@@ -28,8 +28,8 @@ public class MinioUtil {
      */
     public void createBucket(String bucket) throws Exception {
         boolean exists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build());
-        if (exists) {
-            minioClient.makeBucket(MakeBucketArgs.builder().build());
+        if (!exists) {
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
         }
     }
 
@@ -44,7 +44,6 @@ public class MinioUtil {
     public void uploadFile(InputStream inputStream, String bucket, String objectName) throws Exception {
         ObjectWriteResponse objectWriteResponse = minioClient.putObject(PutObjectArgs.builder().bucket(bucket).object(objectName)
                 .stream(inputStream, -1, Integer.MAX_VALUE).build());
-
     }
 
     /**

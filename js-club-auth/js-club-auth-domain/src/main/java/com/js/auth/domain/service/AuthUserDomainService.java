@@ -1,5 +1,6 @@
 package com.js.auth.domain.service;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import com.js.auth.domain.entity.AuthUserBO;
 
 /**
@@ -19,4 +20,14 @@ public interface AuthUserDomainService {
     Boolean register(AuthUserBO authUserBO);
 
     Boolean update(AuthUserBO authUserBO);
+
+    SaTokenInfo doLogin(String validCode);
+
+    /**
+     * 获取用户信息
+     *
+     * @param authUserBO
+     * @return
+     */
+    AuthUserBO getUserInfo(AuthUserBO authUserBO);
 }

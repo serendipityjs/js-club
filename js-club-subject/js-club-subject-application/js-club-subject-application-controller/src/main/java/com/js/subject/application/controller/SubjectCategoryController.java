@@ -3,7 +3,9 @@ package com.js.subject.application.controller;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.js.subject.application.convert.SubjectCategoryDtoConvert;
+import com.js.subject.application.convert.SubjectLabelDtoConvert;
 import com.js.subject.application.dto.SubjectCategoryDto;
+import com.js.subject.application.dto.SubjectLabelDto;
 import com.js.subject.comm.entity.Result;
 import com.js.subject.domain.entity.SubjectCategoryBo;
 import com.js.subject.domain.service.SubjectCategoryDomainService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -128,5 +131,35 @@ public class SubjectCategoryController {
             return Result.fail("删除分类失败");
         }
     }
+
+    /**
+     * 查询分类及标签一次性
+     */
+    @PostMapping("/queryCategoryAndLabel")
+    public Result<List<SubjectCategoryDto>> queryCategoryAndLabel(@RequestBody SubjectCategoryDto subjectCategoryDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.queryCategoryAndLabel.dto:{}"
+                        , JSON.toJSONString(subjectCategoryDTO));
+            }
+            Preconditions.checkNotNull(subjectCategoryDTO.getId(), "分类id不能为空");
+            SubjectCategoryBo subjectCategoryBO = SubjectCategoryDtoConvert.INSTANCE.
+                    convertDtoToBo(subjectCategoryDTO);
+            List<SubjectCategoryBo> subjectCategoryBOList = subjectCategoryDomainService.queryCategoryAndLabel(subjectCategoryBO);
+            List<SubjectCategoryDto> dtoList = new LinkedList<>();
+            subjectCategoryBOList.forEach(bo -> {
+                SubjectCategoryDto dto = SubjectCategoryDtoConvert.INSTANCE.convertBoToCategoryDTO(bo);
+                List<SubjectLabelDto> labelDTOList = SubjectLabelDtoConvert.INSTANCE.subjectLabelBoListToDto(bo.getLabelBOList());
+                dto.setLabelDTOList(labelDTOList);
+                dtoList.add(dto);
+            });
+            return Result.ok(dtoList);
+        } catch (Exception e) {
+            log.error("SubjectCategoryController.queryPrimaryCategory.error:{}", e.getMessage(), e);
+            return Result.fail("查询失败");
+        }
+    }
+
+
 
 }

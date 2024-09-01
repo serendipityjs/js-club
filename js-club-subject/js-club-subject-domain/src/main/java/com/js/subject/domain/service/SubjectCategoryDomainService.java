@@ -19,4 +19,12 @@ public interface SubjectCategoryDomainService {
     Boolean update(SubjectCategoryBo subjectCategoryBo);
 
     Boolean delete(SubjectCategoryBo subjectCategoryBo);
+
+    /**
+     * 查询分类及标签
+     *
+     * @param subjectCategoryBO
+     * @return
+     */
+    List<SubjectCategoryBo> queryCategoryAndLabel(SubjectCategoryBo subjectCategoryBO);
 }
