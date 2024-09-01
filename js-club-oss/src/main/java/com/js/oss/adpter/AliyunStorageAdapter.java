@@ -1,6 +1,7 @@
 package com.js.oss.adpter;
 
 import com.js.oss.entity.FileInfo;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -17,8 +18,13 @@ public class AliyunStorageAdapter implements StorageAdapter {
     }
 
     @Override
-    public void uploadFile(InputStream inputStream, String bucket, String objectName) {
+    public void uploadFile(MultipartFile uploadFile, String bucket, String objectName) {
 
+    }
+
+    @Override
+    public String getUrl(String bucket, String objectName) {
+        return "";
     }
 
     @Override

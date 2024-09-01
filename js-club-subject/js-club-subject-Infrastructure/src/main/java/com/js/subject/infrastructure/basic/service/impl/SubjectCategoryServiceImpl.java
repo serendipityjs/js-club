@@ -26,6 +26,17 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService {
     }
 
     /**
+     * 查询题目数量
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer querySubjectCount(Long id) {
+        return this.subjectCategoryDao.querySubjectCount(id);
+    }
+
+    /**
      * 新增数据
      *
      * @param subjectCategory 实例对象

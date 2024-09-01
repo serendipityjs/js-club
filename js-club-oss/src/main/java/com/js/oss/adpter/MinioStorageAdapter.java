@@ -3,6 +3,8 @@ package com.js.oss.adpter;
 import com.js.oss.entity.FileInfo;
 import com.js.oss.util.MinioUtil;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
@@ -14,6 +16,13 @@ import java.util.List;
  */
 public class MinioStorageAdapter implements StorageAdapter {
 
+    /**
+     * minioUrl
+     */
+    @Value("${minio.url}")
+    private String url;
+
+
     @Resource
     MinioUtil minioUtil;
 
@@ -23,11 +32,39 @@ public class MinioStorageAdapter implements StorageAdapter {
         minioUtil.createBucket(bucket);
     }
 
+
+    /**
+     * 上传文件
+     *
+     * @param uploadFile
+     * @param bucket
+     * @param objectName
+     */
     @Override
     @SneakyThrows
-    public void uploadFile(InputStream inputStream, String bucket, String objectName) {
-        minioUtil.uploadFile(inputStream, bucket, objectName);
+    public void uploadFile(MultipartFile uploadFile, String bucket, String objectName) {
+        minioUtil.createBucket(bucket);
+        if (objectName != null) {
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucket, objectName + "/" + uploadFile.getOriginalFilename());
+        } else {
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucket, uploadFile.getOriginalFilename());
+        }
     }
+
+    /**
+     * 获取文件路径
+     *
+     * @param bucket
+     * @param objectName
+     * @return
+     */
+    @Override
+    @SneakyThrows
+    public String getUrl(String bucket, String objectName) {
+        return url + "/" + bucket + "/" + objectName;
+    }
+
+
 
     @Override
     @SneakyThrows
@@ -58,4 +95,6 @@ public class MinioStorageAdapter implements StorageAdapter {
     public void deleteObject(String bucket, String objectName) {
         minioUtil.deleteObject(bucket, objectName);
     }
+
+
 }

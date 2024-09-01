@@ -1,11 +1,13 @@
 package com.js.oss.controller;
 
+import com.js.oss.entity.Result;
 import com.js.oss.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,6 +32,24 @@ public class FileController {
         }
         return allBucket.get(0);
     }
+
+
+    @RequestMapping("/getUrl")
+    public String getUrl(String bucketName, String objectName) throws Exception {
+        return fileService.getUrl(bucketName, objectName);
+    }
+
+
+
+    /**
+     * 上传文件
+     */
+    @RequestMapping("/upload")
+    public Result upload(MultipartFile uploadFile, String bucket, String objectName) throws Exception {
+        String url = fileService.uploadFile(uploadFile, bucket, objectName);
+        return Result.ok(url);
+    }
+
 
 }
 

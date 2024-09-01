@@ -49,4 +49,12 @@ public interface SubjectCategoryService {
      * 查询岗位大类
      */
     List<SubjectCategory> queryCategory(SubjectCategory subjectCategory);
+
+    /**
+     * 查询题目数量
+     *
+     * @param id
+     * @return
+     */
+    Integer querySubjectCount(Long id);
 }

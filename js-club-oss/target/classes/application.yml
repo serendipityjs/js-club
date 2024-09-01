@@ -5,3 +5,12 @@ minio:
   url: http://121.199.72.185:9000
   accessKey: minioadmin
   secretKey: minioadmin
+
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+      file-size-threshold: 500MB

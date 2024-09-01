@@ -2,6 +2,8 @@ package com.js.subject.application.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author jiaoshuai
  * @date 2024/6/24 17:07
@@ -32,4 +34,15 @@ public class SubjectCategoryDto {
      * 父级id
      */
     private Long parentId;
+
+    /**
+     * 数量
+     */
+    private Integer count;
+
+    /**
+     * labelDto信息
+     */
+    private List<SubjectLabelDto> LabelDTOList;
+
 }

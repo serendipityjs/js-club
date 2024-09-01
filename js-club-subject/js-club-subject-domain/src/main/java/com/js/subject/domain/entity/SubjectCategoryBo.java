@@ -2,6 +2,8 @@ package com.js.subject.domain.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author jiaoshuai
  * @date 2024/6/24 17:07
@@ -32,4 +34,14 @@ public class SubjectCategoryBo {
      * 父级id
      */
     private Long parentId;
+
+    /**
+     * 题目数量
+     */
+    private Integer count;
+
+    /**
+     * 标签bo数量
+     */
+    List<SubjectLabelBo> labelBOList;
 }

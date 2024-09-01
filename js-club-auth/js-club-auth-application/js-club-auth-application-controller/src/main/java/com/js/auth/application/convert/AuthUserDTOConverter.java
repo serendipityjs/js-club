@@ -15,4 +15,5 @@ public interface AuthUserDTOConverter {
 
     AuthUserBO convertDTOToBO(AuthUserDto authUserDto);
 
+    AuthUserDto convertBOToDTO(AuthUserBO authUserBO);
 }

@@ -18,4 +18,6 @@ public interface SubjectCategoryDtoConvert {
     SubjectCategoryBo convertDtoToBo(SubjectCategoryDto subjectCategoryDto);
 
     List<SubjectCategoryDto> convertBoListToDtoList(List<SubjectCategoryBo> subjectCategoryBos);
+
+    SubjectCategoryDto convertBoToCategoryDTO(SubjectCategoryBo bo);
 }

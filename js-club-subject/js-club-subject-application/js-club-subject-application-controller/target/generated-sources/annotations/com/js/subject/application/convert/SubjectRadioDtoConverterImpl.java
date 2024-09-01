@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-03T19:37:18+0800",
+    date = "2024-08-31T10:33:51+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 public class SubjectRadioDtoConverterImpl implements SubjectRadioDtoConverter {
