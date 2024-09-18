@@ -7,6 +7,7 @@ import com.js.subject.application.convert.SubjectLabelDtoConvert;
 import com.js.subject.application.dto.SubjectCategoryDto;
 import com.js.subject.application.dto.SubjectLabelDto;
 import com.js.subject.comm.entity.Result;
+import com.js.subject.comm.util.LoginUtil;
 import com.js.subject.domain.entity.SubjectCategoryBo;
 import com.js.subject.domain.service.SubjectCategoryDomainService;
 import lombok.extern.slf4j.Slf4j;
@@ -142,6 +143,8 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.queryCategoryAndLabel.dto:{}"
                         , JSON.toJSONString(subjectCategoryDTO));
             }
+            String loginId = LoginUtil.getLoginId();
+            System.out.println("loginId:"+loginId);
             Preconditions.checkNotNull(subjectCategoryDTO.getId(), "分类id不能为空");
             SubjectCategoryBo subjectCategoryBO = SubjectCategoryDtoConvert.INSTANCE.
                     convertDtoToBo(subjectCategoryDTO);
