@@ -3,6 +3,7 @@ package com.js.subject.domain.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.js.subject.comm.entity.PageResult;
 import com.js.subject.comm.enums.IsDeletedFlagEnum;
+import com.js.subject.comm.util.IdWorkerUtil;
 import com.js.subject.domain.convert.SubjectBoConvert;
 import com.js.subject.domain.entity.SubjectInfoBo;
 import com.js.subject.domain.entity.SubjectOptionBo;
@@ -10,8 +11,10 @@ import com.js.subject.domain.handler.subject.SubjectTypeHandler;
 import com.js.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.js.subject.domain.service.SubjectDomainService;
 import com.js.subject.infrastructure.basic.entity.SubjectInfo;
+import com.js.subject.infrastructure.basic.entity.SubjectInfoEs;
 import com.js.subject.infrastructure.basic.entity.SubjectLabel;
 import com.js.subject.infrastructure.basic.entity.SubjectMapping;
+import com.js.subject.infrastructure.basic.service.SubjectEsService;
 import com.js.subject.infrastructure.basic.service.SubjectInfoService;
 import com.js.subject.infrastructure.basic.service.SubjectLabelService;
 import com.js.subject.infrastructure.basic.service.SubjectMappingService;
@@ -19,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +46,9 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
 
     @Resource
     private SubjectLabelService subjectLabelService;
+
+    @Resource
+    private SubjectEsService subjectEsService;
 
     public void add(SubjectInfoBo subjectInfoBo) {
         if (log.isInfoEnabled()) {
@@ -77,6 +84,17 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
             });
         });
         subjectMappingService.batchInset(subjectMappingList);
+        //同步到es
+        SubjectInfoEs subjectInfoEs = new SubjectInfoEs();
+        subjectInfoEs.setDocId(new IdWorkerUtil(1, 1, 1).nextId());
+        subjectInfoEs.setSubjectId(subjectInfo.getId());
+        subjectInfoEs.setSubjectAnswer(subjectInfoBo.getSubjectAnswer());
+        subjectInfoEs.setCreateTime(new Date().getTime());
+        subjectInfoEs.setCreateUser("js");
+        subjectInfoEs.setSubjectName(subjectInfo.getSubjectName());
+        subjectInfoEs.setSubjectType(subjectInfo.getSubjectType());
+        subjectEsService.insert(subjectInfoEs);
+
     }
 
     /**
@@ -133,4 +151,15 @@ public class SubjectDomainServiceImpl implements SubjectDomainService {
         pageResult.setTotal(count);
         return pageResult;
     }
+
+
+    @Override
+    public PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoBo subjectInfoBO) {
+        SubjectInfoEs subjectInfoEs = new SubjectInfoEs();
+        subjectInfoEs.setPageNo(subjectInfoBO.getPageNo());
+        subjectInfoEs.setPageSize(subjectInfoBO.getPageSize());
+        subjectInfoEs.setKeyWord(subjectInfoBO.getKeyWord());
+        return subjectEsService.querySubjectList(subjectInfoEs);
+    }
+
 }

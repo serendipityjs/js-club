@@ -10,6 +10,7 @@ import com.js.subject.comm.entity.Result;
 import com.js.subject.domain.entity.SubjectAnswerBo;
 import com.js.subject.domain.entity.SubjectInfoBo;
 import com.js.subject.domain.service.SubjectDomainService;
+import com.js.subject.infrastructure.basic.entity.SubjectInfoEs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -32,6 +33,7 @@ public class SubjectController {
 
     @Resource
     private SubjectDomainService subjectDomainService;
+
 
     /**
      * 新增题目
@@ -112,6 +114,28 @@ public class SubjectController {
         } catch (Exception e) {
             log.error("SubjectController.getSubjectInfo.error:{}", e.getMessage(), e);
             return Result.fail(e.getMessage());
+        }
+    }
+
+
+    /**
+     * 全文检索
+     */
+        @PostMapping("/`getSubjectPageBySearch`")
+    public Result<PageResult<SubjectInfoEs>> getSubjectPageBySearch(@RequestBody SubjectInfoDto subjectInfoDto) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectController.getSubjectPageBySearch.dto:{}", JSON.toJSONString(subjectInfoDto));
+            }
+            Preconditions.checkArgument(StringUtils.isNotBlank(subjectInfoDto.getKeyWord()), "关键词不能为空");
+            SubjectInfoBo subjectInfoBO = SubjectInfoDtoConverter.INSTANCE.subjectInfoDtoToBo(subjectInfoDto);
+            subjectInfoBO.setPageNo(subjectInfoDto.getPageNo());
+            subjectInfoBO.setPageSize(subjectInfoDto.getPageSize());
+            PageResult<SubjectInfoEs> boPageResult = subjectDomainService.getSubjectPageBySearch(subjectInfoBO);
+            return Result.ok(boPageResult);
+        } catch (Exception e) {
+            log.error("SubjectCategoryController.getSubjectPageBySearch.error:{}", e.getMessage(), e);
+            return Result.fail("全文检索失败");
         }
     }
 

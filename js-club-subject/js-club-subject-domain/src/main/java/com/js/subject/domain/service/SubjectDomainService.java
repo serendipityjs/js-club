@@ -2,6 +2,7 @@ package com.js.subject.domain.service;
 
 import com.js.subject.comm.entity.PageResult;
 import com.js.subject.domain.entity.SubjectInfoBo;
+import com.js.subject.infrastructure.basic.entity.SubjectInfoEs;
 
 /**
  * 题目领域服务
@@ -31,4 +32,12 @@ public interface SubjectDomainService {
      * @return
      */
     SubjectInfoBo getSubjectInfo(SubjectInfoBo subjectInfoBo);
+
+    /**
+     * 全文检索
+     *
+     * @param subjectInfoBO
+     * @return
+     */
+    PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoBo subjectInfoBO);
 }

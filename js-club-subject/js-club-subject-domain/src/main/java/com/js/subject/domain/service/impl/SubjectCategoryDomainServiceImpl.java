@@ -6,6 +6,7 @@ import com.js.subject.domain.convert.SubjectCategoryBoConvert;
 import com.js.subject.domain.entity.SubjectCategoryBo;
 import com.js.subject.domain.entity.SubjectLabelBo;
 import com.js.subject.domain.service.SubjectCategoryDomainService;
+import com.js.subject.domain.util.CacheUtil;
 import com.js.subject.infrastructure.basic.entity.SubjectCategory;
 import com.js.subject.infrastructure.basic.entity.SubjectLabel;
 import com.js.subject.infrastructure.basic.entity.SubjectMapping;
@@ -45,6 +46,8 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     private SubjectLabelServiceImpl subjectLabelService;
     @Resource
     private ThreadPoolExecutor labelThreadPool;
+    @Resource
+    private  CacheUtil cacheUtil;
 
     /**
      *
@@ -55,7 +58,12 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     public List<SubjectCategoryBo> queryCategoryAndLabel(SubjectCategoryBo subjectCategoryBO) {
         //查询当前大类下所有分类
-        return getSubjectCategoryBOS(subjectCategoryBO.getId());
+        Long id = subjectCategoryBO.getId();
+        String cacheKey = "categoryAndLabel." + subjectCategoryBO.getId();
+        List<SubjectCategoryBo> subjectCategoryBOS = cacheUtil.getResult(cacheKey,
+                SubjectCategoryBo.class, (key) -> getSubjectCategoryBOS(id));
+        return subjectCategoryBOS;
+
     }
 
 

@@ -37,7 +37,7 @@ public class LoginFilter implements GlobalFilter {
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         log.info("LoginFilter.filter.url:{}", new Gson().toJson(tokenInfo));
         String loginId = (String) tokenInfo.getLoginId();
-        mutate.header("loginId", "123456");
+        mutate.header("loginId", loginId);
         return chain.filter(exchange.mutate().request(mutate.build()).build());
     }
 
