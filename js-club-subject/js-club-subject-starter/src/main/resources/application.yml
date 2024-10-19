@@ -30,6 +30,9 @@ spring:
 publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANdrWdz7mRRTVuIEEyFI4i6B+6dnft3fMreoXXxqYR48h/6B/twXmaBXcHHbupx29vCs0ZltOhFsjLUjwsVljNUCAwEAAQ==
 logging:
   config:classPath: log4j2-spring.xml
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+es:
+  cluster:
+    esConfigs[0]:
+      name: d09b839efa59
+      nodes: 123.60.83.190:9200
+
